@@ -3,17 +3,25 @@ const path = require("path");
 const express = require("express");
 const request = require("request");
 
+const hbs = require("hbs");
+
 const app = express();
+
+// Define the path for the Express config
 const publicDirectoryPath = path.join(__dirname, "../public");
 
-// Default 'views' folder, renamed it to 'templates' folder 
-const viewPath = path.join(__dirname,"../templates");
+// Default 'views' folder, renamed it to 'templates' folder
+const viewPath = path.join(__dirname, "../templates/views");
+const partialsPath = path.join(__dirname, "../templates/partials");
 
+// Setup Handlebars and view location
 // Set the key value of 'template' folder
 app.set("views", viewPath);
 
 // Set the key value
 app.set("view engine", "hbs");
+
+hbs.registerPartials(partialsPath);
 
 // Home Page
 app.get("", (req, resp) => {
@@ -35,12 +43,13 @@ app.get("/about", (req, resp) => {
 app.get("/help", (req, resp) => {
   resp.render("help", {
     title: "Help Page",
+    name: 'vzan2012',
     helpText: "This is some helpful text."
   });
   // console.log("Viewing the Help Page");
 });
 
-// Enable the folder as the root in the server
+// Setup static directory to serve
 app.use(express.static(publicDirectoryPath));
 
 app.get("/weather", (req, resp) => {
