@@ -6,6 +6,12 @@ const request = require("request");
 const app = express();
 const publicDirectoryPath = path.join(__dirname, "../public");
 
+// Default 'views' folder, renamed it to 'templates' folder 
+const viewPath = path.join(__dirname,"../templates");
+
+// Set the key value of 'template' folder
+app.set("views", viewPath);
+
 // Set the key value
 app.set("view engine", "hbs");
 
@@ -31,7 +37,7 @@ app.get("/help", (req, resp) => {
     title: "Help Page",
     helpText: "This is some helpful text."
   });
-  console.log("Viewing the Help Page");
+  // console.log("Viewing the Help Page");
 });
 
 // Enable the folder as the root in the server
