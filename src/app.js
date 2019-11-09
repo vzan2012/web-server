@@ -43,7 +43,7 @@ app.get("/about", (req, resp) => {
 app.get("/help", (req, resp) => {
   resp.render("help", {
     title: "Help Page",
-    name: 'vzan2012',
+    name: "vzan2012",
     helpText: "This is some helpful text."
   });
   // console.log("Viewing the Help Page");
@@ -68,5 +68,24 @@ app.get("/weather", (req, resp) => {
 // Display the Current File Path
 // console.log(__filename);
 // console.log(path);
+
+app.get("/help/*", (req, resp) => {
+  // resp.send("Help Page not found");
+  resp.render("404", {
+    title: '404',
+    name: 'vzan2012',    
+    errorMessage: "Help article not found"
+  });
+});
+
+// My 404 Page
+app.get("*", (req, resp) => {
+  // resp.send("My 404 Page");
+  resp.render("404", {
+    title: '404',
+    name: 'vzan2012',
+    errorMessage: "Page Not Found"
+  });
+});
 
 app.listen(3000, () => console.log("Server is running in port 3000"));
