@@ -2,14 +2,9 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  color: #333;
   font-size: 13px;
   line-height: 20px;
   position: relative;
-}
-
-h1 {
-  color: #111;
 }
 
 .img-myself {
@@ -18,7 +13,6 @@ h1 {
 }
 
 footer {
-  color: #333;
   position: relative;
   font-size: 11px;
   width: 100%;

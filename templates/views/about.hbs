@@ -7,18 +7,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{title}}</title>
 
-    <link rel="stylesheet" href="/css/styles.css" />
+    {{!-- Styles --}}
+    {{>styles}}
 </head>
 
 <body>
     {{>header}}
-    <p>
-        <img src="/img/robot1.png" class="img-myself" alt="Myself !!!" />
-        <br />
-        <strong>Created by:</strong> {{name}}
-    </p>
-    <a href="/">Back to Home Page</a>
-    {{>footer}}
+    <div class="container mt-5">
+        <div class="row-fluid">
+            <h1>{{title}}</h1>
+            <p>
+                <img src="/img/robot1.png" class="img-myself" alt="Myself !!!" />
+                <br />
+                <strong>Created by:</strong> {{name}}
+            </p>
+            <a href="/">Back to Home Page</a>
+            {{>footer}}
+
+        </div>
+    </div>
+
+    {{!-- Scripts  --}}
+    {{>scripts}}
 </body>
 
 </html>
