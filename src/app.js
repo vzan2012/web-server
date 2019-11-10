@@ -53,9 +53,16 @@ app.get("/help", (req, resp) => {
 app.use(express.static(publicDirectoryPath));
 
 app.get("/weather", (req, resp) => {
+  if (!req.query.address) {
+    return resp.send({
+      error: "Please provide the address"
+    });
+  }
+
   resp.send({
     forecast: "It is raining...",
-    location: "Paris"
+    location: "Paris",
+    address: req.query.address
   });
 });
 
@@ -69,11 +76,25 @@ app.get("/weather", (req, resp) => {
 // console.log(__filename);
 // console.log(path);
 
+// Example for the Query String
+app.get("/products", (req, resp) => {
+  if (!req.query.search) {
+    return resp.send({
+      error: "You must provide a search term"
+    });
+  }
+
+  console.log(req.query);
+  resp.send({
+    products: []
+  });
+});
+
 app.get("/help/*", (req, resp) => {
   // resp.send("Help Page not found");
   resp.render("404", {
-    title: '404',
-    name: 'vzan2012',    
+    title: "404",
+    name: "vzan2012",
     errorMessage: "Help article not found"
   });
 });
@@ -82,8 +103,8 @@ app.get("/help/*", (req, resp) => {
 app.get("*", (req, resp) => {
   // resp.send("My 404 Page");
   resp.render("404", {
-    title: '404',
-    name: 'vzan2012',
+    title: "404",
+    name: "vzan2012",
     errorMessage: "Page Not Found"
   });
 });
