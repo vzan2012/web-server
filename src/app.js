@@ -62,23 +62,26 @@ app.get("/weather", (req, resp) => {
     });
   }
 
-  geocode(req.query.address, (error, { latitude, longitude, location }) => {
-    if (error) {
-      return resp.send({ error });
-    }
-
-    forecast(latitude, longitude, (error, forecastData) => {
+  geocode(
+    req.query.address,
+    (error, { latitude, longitude, location } = {}) => {
       if (error) {
         return resp.send({ error });
       }
 
-      resp.send({
-        forecast: forecastData,
-        location,
-        address: req.query.address
+      forecast(latitude, longitude, (error, forecastData) => {
+        if (error) {
+          return resp.send({ error });
+        }
+
+        resp.send({
+          forecast: forecastData,
+          location,
+          address: req.query.address
+        });
       });
-    });
-  });
+    }
+  );
 });
 
 // Display the Directory Path
