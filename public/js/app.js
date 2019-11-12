@@ -7,16 +7,24 @@ console.log("Client Side - JavaScript File is loaded !!!");
 //     console.log(e);
 // });
 
-// Goal: Fetch Weather
-fetch("http://localhost:3000/weather?address=boston")
-  .then(async resp => {
-    const data = await resp.json();
-    // console.log(data);
-    if (data.error) {
-      console.log(data.error);
-    } else {
-      console.log(data.location);
-      console.log(data.forecast);
-    }
-  })
-  .catch(err => console.log(err));
+const weatherForm = document.querySelector("form");
+
+const txtLocation = document.querySelector("#txtLocation");
+
+weatherForm.addEventListener("submit", e => {
+  e.preventDefault();
+
+  // Goal: Fetch Weather
+  fetch(`http://localhost:3000/weather?address=${txtLocation.value}`)
+    .then(async resp => {
+      const data = await resp.json();
+      // console.log(data);
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        console.log(data.location);
+        console.log(data.forecast);
+      }
+    })
+    .catch(err => console.log(err));
+});

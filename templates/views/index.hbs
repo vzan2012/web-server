@@ -18,8 +18,18 @@
     <div class="container pg-contents mt-5">
         <div class="row-fluid">
             <h1>{{title}}</h1>
-            <p><strong>Beginner User:</strong> {{name}}</p>
-            <a href="/about">Click here - About Page</a>
+            {{!-- <p><strong>Beginner User:</strong> {{name}}</p>
+            <a href="/about">Click here - About Page</a> --}}
+
+            <strong>Use this website to search the weather</strong>
+            <form class="form-inline mt-3">
+                <div class="form-group mr-1">
+                    <input type="text" class="form-control" name="" placeholder="Enter the Location" id="txtLocation" />
+                </div>
+                <div class="form-group">
+                    <button id="btnSubmit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
 
         </div>
     </div>
