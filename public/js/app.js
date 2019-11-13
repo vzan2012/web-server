@@ -11,6 +11,16 @@ const weatherForm = document.querySelector("form");
 
 const txtLocation = document.querySelector("#txtLocation");
 
+const msgSuccess = document.querySelector(".msg-success");
+const msgError = document.querySelector(".msg-error");
+
+const hideMsgSections = () => {
+  msgSuccess.style.display = "none";
+  msgError.style.display = "none";
+};
+
+hideMsgSections();
+
 weatherForm.addEventListener("submit", e => {
   e.preventDefault();
 
@@ -20,8 +30,27 @@ weatherForm.addEventListener("submit", e => {
       const data = await resp.json();
       // console.log(data);
       if (data.error) {
+        msgSuccess.style.display = "none";
+
+        setTimeout(() => {
+          msgError.style.display = "block";
+          msgError.querySelector(".card-body").innerHTML = `${data.error}`;
+        }, 500);
+
+        setTimeout(() => {
+          hideMsgSections();
+        }, 3000);
+
         console.log(data.error);
       } else {
+        msgError.style.display = "none";
+
+        setTimeout(() => {
+          msgSuccess.style.display = "block";
+          msgSuccess.querySelector(".card-body").innerHTML =
+            `${data.location}` + "<br />" + `${data.forecast}`;
+        }, 500);
+
         console.log(data.location);
         console.log(data.forecast);
       }
