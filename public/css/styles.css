@@ -18,6 +18,14 @@ body {
   width: 500px;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 1);
+}
+
+.nav-logo {
+  width: 45%;
+}
+
 footer {
   position: relative;
   font-size: 11px;
