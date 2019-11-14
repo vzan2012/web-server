@@ -25,7 +25,7 @@ weatherForm.addEventListener("submit", e => {
   e.preventDefault();
 
   // Goal: Fetch Weather
-  fetch(`http://localhost:3000/weather?address=${txtLocation.value}`)
+  fetch(`/weather?address=${txtLocation.value}`)
     .then(async resp => {
       const data = await resp.json();
       // console.log(data);

@@ -4,7 +4,7 @@
   "description": "Node Web Server - tutorial practised",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js"
   },
   "keywords": [],
   "author": "Sitharaman Deepak Guptha",
