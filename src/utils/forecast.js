@@ -11,15 +11,18 @@ const forecast = (longitude, latitude, callback) => {
     } else if (body.error) {
       callback(body.error, undefined);
     } else {
+      // console.log(body);
+
       const data = body.currently;
       const temperature = data.temperature;
       const precipProbability = data.precipProbability;
 
+      const dailyData = body.daily.data[0];
       const todayForecast = body.daily.data[0].summary;
 
       callback(
         undefined,
-        `${todayForecast} It is currently ${temperature} degrees out. There is a ${precipProbability} % chance of rain`
+        `${todayForecast} It is currently ${temperature} degrees out. This high today is ${dailyData.temperatureHigh} with a low of ${dailyData.temperatureLow}. There is a ${precipProbability} % chance of rain. <img src='https://darksky.net/images/weather-icons/${dailyData.icon}.png' value='${dailyData.icon}' class='climate-icon' />`
       );
     }
   });

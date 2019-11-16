@@ -48,11 +48,12 @@ weatherForm.addEventListener("submit", e => {
         setTimeout(() => {
           msgSuccess.style.display = "block";
           msgSuccess.querySelector(".card-body").innerHTML =
-            `${data.location}` + "<br />" + `${data.forecast}`;
+            `<div class='location-title mb-3'>${data.location}</div>` +
+            `<p>${data.forecast} </p>`;
         }, 500);
 
-        console.log(data.location);
-        console.log(data.forecast);
+        // console.log(data.location);
+        // console.log(data.forecast);
       }
     })
     .catch(err => console.log(err));
