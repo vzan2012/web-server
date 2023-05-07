@@ -34,6 +34,7 @@ This web application developed using Node.js, accepts the location as user input
 - Open the browser and access url generated from the terminal (Example: http://localhost:3000)
 
 ### Screenshot
+![image](https://user-images.githubusercontent.com/13725828/236682014-97aabf62-3251-4568-9b72-58663f9f85e7.png)
 
 ### Author
 
