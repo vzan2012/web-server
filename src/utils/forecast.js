@@ -1,8 +1,12 @@
+require("dotenv").config();
+
 const request = require("request");
+
+const OPENWEATHERMAP_APPID = process.env.OPENWEATHERMAP_APPID;
 
 const forecast = (longitude, latitude, callback) => {
   // URL API
-  const url = `https://api.darksky.net/forecast/36c68e867439bbf93474df268266b674/${longitude},${latitude}?units=si`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${longitude}&lon=${latitude}&units=metric&lang=en&appid=${OPENWEATHERMAP_APPID}`;
 
   // Request Method
   request({ url, json: true }, (error, { body }) => {
@@ -11,18 +15,19 @@ const forecast = (longitude, latitude, callback) => {
     } else if (body.error) {
       callback(body.error, undefined);
     } else {
-      // console.log(body);
-
-      const data = body.currently;
-      const temperature = data.temperature;
-      const precipProbability = data.precipProbability;
-
-      const dailyData = body.daily.data[0];
-      const todayForecast = body.daily.data[0].summary;
-
+      const { icon: weatherIcon, description: weatherDescription } =
+        body.weather[0];
+      const {
+        main: {
+          temp: temperature,
+          temp_min: temperatureLow,
+          temp_max: temperatureHigh,
+          feels_like: temperatureLike,
+        },
+      } = body;
       callback(
         undefined,
-        `${todayForecast} It is currently ${temperature} degrees out. This high today is ${dailyData.temperatureHigh} with a low of ${dailyData.temperatureLow}. There is a ${precipProbability} % chance of rain. <img src='https://darksky.net/images/weather-icons/${dailyData.icon}.png' value='${dailyData.icon}' class='climate-icon' />`
+        `It is currently ${temperature} &deg;C.<br/>This high today is ${temperatureHigh} &deg;C with a low of ${temperatureLow} &deg;C.<br/>Feels like ${temperatureLike} &deg;C. <img src='https://openweathermap.org/img/wn/${weatherIcon}.png' alt='${weatherDescription}' class='climate-icon' />`
       );
     }
   });

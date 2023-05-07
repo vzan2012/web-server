@@ -39,7 +39,7 @@ body {
 
 .location-title + p > img.climate-icon {
   display: block;
-  width: 100px;
+  width: auto;
   margin: 10px auto 0;
 }
 

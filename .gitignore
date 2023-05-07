@@ -1,2 +1,10 @@
+# Unwanted Files
 node_modules
 playground
+.env
+
+# Workspace File
+*.code-workspace
+
+
+
